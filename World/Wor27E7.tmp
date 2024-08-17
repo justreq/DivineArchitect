@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://exmdcnjl3op5" path="res://Tiles/Tree.tscn" id="3_v7w8p"]
 [ext_resource type="PackedScene" uid="uid://cr1rp07sir5f5" path="res://Local/Local.tscn" id="4_7f3ng"]
 [ext_resource type="Texture2D" uid="uid://ci8y2es8jxtu4" path="res://World/WorldLightTexture.webp" id="6_5mfro"]
-[ext_resource type="StyleBox" uid="uid://d2o7kyaxiea6i" path="res://UI/Panel.tres" id="7_unkbg"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mbrv5"]
 resource_name = "Tree"
@@ -14,6 +13,17 @@ scenes/1/scene = ExtResource("3_v7w8p")
 
 [sub_resource type="TileSet" id="TileSet_38hwo"]
 sources/0 = SubResource("TileSetScenesCollectionSource_mbrv5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r06g"]
+bg_color = Color(0.351563, 0.351563, 0.351563, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_psvll"]
 font_size = 32
@@ -41,7 +51,6 @@ world = NodePath("..")
 position = Vector2(-31, 13)
 world = NodePath("..")
 sex = 1
-firstName = "Eve"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(140, 135)
@@ -62,7 +71,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="TimePanel" type="PanelContainer" parent="GUI/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("7_unkbg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7r06g")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/TimePanel"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://fy5g52cuax2c"]
+[gd_scene load_steps=9 format=4 uid="uid://fy5g52cuax2c"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_gqys1"]
 [ext_resource type="PackedScene" uid="uid://8oaaywiu1v5u" path="res://World/WorldCamera.tscn" id="1_np4mr"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://exmdcnjl3op5" path="res://Tiles/Tree.tscn" id="3_v7w8p"]
 [ext_resource type="PackedScene" uid="uid://cr1rp07sir5f5" path="res://Local/Local.tscn" id="4_7f3ng"]
 [ext_resource type="Texture2D" uid="uid://ci8y2es8jxtu4" path="res://World/WorldLightTexture.webp" id="6_5mfro"]
-[ext_resource type="StyleBox" uid="uid://d2o7kyaxiea6i" path="res://UI/Panel.tres" id="7_unkbg"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mbrv5"]
 resource_name = "Tree"
@@ -14,12 +13,6 @@ scenes/1/scene = ExtResource("3_v7w8p")
 
 [sub_resource type="TileSet" id="TileSet_38hwo"]
 sources/0 = SubResource("TileSetScenesCollectionSource_mbrv5")
-
-[sub_resource type="LabelSettings" id="LabelSettings_psvll"]
-font_size = 32
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 0
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_gqys1")
@@ -33,18 +26,14 @@ tile_map_data = PackedByteArray("AAD8////AAAEAAAAAAD8/wAAAAAEAAAAAAD9/wEAAAAEAAA
 tile_map_data = PackedByteArray("AAD8//v/AAAAAAAAAQAAAPf/AAAAAAAAAQD8//b/AAAAAAAAAQACAPn/AAAAAAAAAQD///v/AAAAAAAAAQAEAP7/AAAAAAAAAQAHAP7/AAAAAAAAAQAJAPv/AAAAAAAAAQD9//3/AAAAAAAAAQAAAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_38hwo")
 
-[node name="Local" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_7f3ng")]
+[node name="Local" parent="." instance=ExtResource("4_7f3ng")]
 position = Vector2(53, 41)
-world = NodePath("..")
 
-[node name="Local2" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_7f3ng")]
+[node name="Local2" parent="." instance=ExtResource("4_7f3ng")]
 position = Vector2(-31, 13)
-world = NodePath("..")
 sex = 1
-firstName = "Eve"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(140, 135)
 texture = ExtResource("6_5mfro")
 texture_scale = 50.0
 
@@ -53,86 +42,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI"]
-offset_right = 693.0
-offset_bottom = 102.0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_bottom = 0
-
-[node name="TimePanel" type="PanelContainer" parent="GUI/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("7_unkbg")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/TimePanel"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="TimeLabel" type="Label" parent="GUI/MarginContainer/TimePanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/TimePanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Time Speed:"
-
-[node name="TimeSpeedSlider" type="HSlider" parent="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 60.0
-value = 1.0
-scrollable = false
-tick_count = 61
-ticks_on_borders = true
-
-[node name="TimeSpeedLabel" type="Label" parent="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TimeUnitSelector" type="OptionButton" parent="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-selected = 1
-item_count = 7
-popup/item_0/text = "deciseconds"
-popup/item_1/text = "seconds"
-popup/item_1/id = 1
-popup/item_2/text = "minutes"
-popup/item_2/id = 2
-popup/item_3/text = "hours"
-popup/item_3/id = 3
-popup/item_4/text = "days"
-popup/item_4/id = 4
-popup/item_5/text = "weeks"
-popup/item_5/id = 5
-popup/item_6/text = "months"
-popup/item_6/id = 6
-
-[node name="Label2" type="Label" parent="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "/ second"
-
-[node name="FlashWarningLabel" type="Label" parent="GUI"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -55.0
-offset_right = 20.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Further speed-up of time is not advised. The flashing lights may cause epileptic seizures"
-label_settings = SubResource("LabelSettings_psvll")
-horizontal_alignment = 1
-
-[connection signal="mouse_entered" from="GUI/MarginContainer/TimePanel" to="." method="_on_time_panel_mouse_entered"]
-[connection signal="mouse_exited" from="GUI/MarginContainer/TimePanel" to="." method="_on_time_panel_mouse_exited"]
-[connection signal="value_changed" from="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer/TimeSpeedSlider" to="." method="_on_time_speed_slider_value_changed"]
-[connection signal="item_selected" from="GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer/TimeUnitSelector" to="." method="_on_time_unit_selected"]
+[node name="Label" type="Label" parent="GUI"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 39.0

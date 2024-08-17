@@ -3,7 +3,7 @@ extends Camera2D
 var dragging := false
 var dragStartPosition := Vector2.ZERO
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("camera_drag_start"):
 		dragStartPosition = get_global_mouse_position()
 		dragging = true
