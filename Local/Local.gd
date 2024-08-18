@@ -20,30 +20,55 @@ enum Sex {
 @onready var energyBar: ProgressBar = $PanelContainer/VBoxContainer/HBoxContainer3/EnergyBar
 @onready var energyMoodletLabel: Label = $PanelContainer/VBoxContainer/HBoxContainer3/EnergyMoodletLabel
 
-enum MoodletHunger {
-	Fed,
-	Hungry,
-	Starving,
-}
-@export var motiveHunger := 0.0
-@export var moodletHunger := MoodletHunger.Fed
+var moodletHunger := ""
+var motiveHunger := 0.0:
+	get:
+		return motiveHunger
+	set(value):
+		motiveHunger = value
+		
+		if value >= 0.95:
+			moodletHunger = "Starving"
+		elif value >= 0.9:
+			moodletHunger = "Very Hungry"
+		elif value >= 0.8:
+			moodletHunger = "Hungry"
+		else:
+			moodletHunger = ""
 
-enum MoodletThirst {
-	Hydrated,
-	Thirsty,
-	Parched,
-}
-@export var motiveThirst := 0.0
-@export var moodletThirst := MoodletThirst.Hydrated
+var moodletThirst := ""
+var motiveThirst := 0.0:
+	get:
+		return motiveThirst
+	set(value):
+		motiveThirst = value
+		
+		if value >= 0.95:
+			moodletThirst = "Parched"
+		elif value >= 0.9:
+			moodletThirst = "Very Thirsty"
+		elif value >= 0.8:
+			moodletThirst = "Thirsty"
+		else:
+			moodletThirst = ""
 
-enum MoodletEnergy {
-	Energetic,
-	Tired,
-	Exhausted,
-	Sleeping
-}
-@export var motiveEnergy := 0.0
-@export var moodletEnergy := MoodletEnergy.Energetic
+var moodletEnergy := ""
+var motiveEnergy := 0.0:
+	get:
+		return motiveEnergy
+	set(value):
+		motiveEnergy = value
+		
+		if value == 1:
+			moodletEnergy = "Exhausted"
+		elif value >= 0.95:
+			moodletEnergy = "Tired"
+		elif value >= 0.9:
+			moodletEnergy = "Sleepy"
+		elif value <= 1.0:
+			moodletEnergy = "Well Rested"
+		else:
+			moodletEnergy = ""
 
 var birthTimestamp: int
 var oldIngameTimestamp := 0.0
@@ -65,29 +90,26 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if int(oldIngameTimestamp) != int(world.ingameTimestamp):
-		motiveHunger += (world.ingameTimestamp - oldIngameTimestamp) / (86400 * (7 + (63 if moodletThirst == MoodletThirst.Hydrated else 0)) * (2 if sleeping else 1))
-		moodletHunger = MoodletHunger.Fed if motiveHunger < 0.33 else MoodletHunger.Starving if motiveHunger > 0.67 else MoodletHunger.Hungry
+		motiveHunger += (world.ingameTimestamp - oldIngameTimestamp) / (86400 * (7 + (63 if moodletThirst == "" else 0)) * (2 if sleeping else 1))
 		if motiveHunger >= 1:
 			die("starvation")
 		
 		motiveThirst += (world.ingameTimestamp - oldIngameTimestamp) / (86400 * 3 * (2 if sleeping else 1))
-		moodletThirst = MoodletThirst.Hydrated if motiveThirst < 0.33 else MoodletThirst.Parched if motiveThirst > 0.67 else MoodletThirst.Thirsty
 		if motiveThirst >= 1:
 			die("dehydration")
 	
 		motiveEnergy += ((world.ingameTimestamp - oldIngameTimestamp) * (-1 if sleeping else 1) / (86400))
-		moodletEnergy = MoodletEnergy.Sleeping if sleeping else MoodletEnergy.Energetic if motiveEnergy < 0.33 else MoodletEnergy.Exhausted if motiveEnergy > 0.67 else MoodletEnergy.Tired
 		if motiveEnergy >= 1:
 			sleep()
 		
-		if sleeping and motiveEnergy <= 0.05:
+		if sleeping and motiveEnergy == 0:
 			sleeping = false
 	
 	oldIngameTimestamp = world.ingameTimestamp
 	
 	hungerBar.value = motiveHunger
-	hungerMoodletLabel.text = str(MoodletHunger.keys()[moodletHunger])
+	hungerMoodletLabel.text = str(moodletHunger)
 	thirstBar.value = motiveThirst
-	thirstMoodletLabel.text = str(MoodletThirst.keys()[moodletThirst])
+	thirstMoodletLabel.text = str(moodletThirst)
 	energyBar.value = motiveEnergy
-	energyMoodletLabel.text = str(MoodletEnergy.keys()[moodletEnergy])
+	energyMoodletLabel.text = str(moodletEnergy)

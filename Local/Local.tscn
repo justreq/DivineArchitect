@@ -45,6 +45,7 @@ layout_mode = 2
 
 [node name="HBoxContainer1" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 16
 
 [node name="HungerLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -54,6 +55,7 @@ text = "Hunger"
 [node name="HungerBar" type="ProgressBar" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 max_value = 1.0
 
 [node name="HungerMoodletLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -61,6 +63,7 @@ layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 16
 
 [node name="ThirstLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
@@ -70,6 +73,8 @@ text = "Thirst"
 [node name="ThirstBar" type="ProgressBar" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
 max_value = 1.0
 
 [node name="ThirstMoodletLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
@@ -77,6 +82,7 @@ layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 16
 
 [node name="EnergyLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer3"]

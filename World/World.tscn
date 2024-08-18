@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://fy5g52cuax2c"]
+[gd_scene load_steps=12 format=4 uid="uid://fy5g52cuax2c"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_gqys1"]
 [ext_resource type="PackedScene" uid="uid://8oaaywiu1v5u" path="res://World/WorldCamera.tscn" id="1_np4mr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cr1rp07sir5f5" path="res://Local/Local.tscn" id="4_7f3ng"]
 [ext_resource type="Texture2D" uid="uid://ci8y2es8jxtu4" path="res://World/WorldLightTexture.webp" id="6_5mfro"]
 [ext_resource type="StyleBox" uid="uid://d2o7kyaxiea6i" path="res://UI/Panel.tres" id="7_unkbg"]
+[ext_resource type="PackedScene" uid="uid://ldawq81tw75n" path="res://Animals/Ox.tscn" id="8_42wpl"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mbrv5"]
 resource_name = "Tree"
@@ -131,6 +132,22 @@ grow_vertical = 0
 text = "Further speed-up of time is not advised. The flashing lights may cause epileptic seizures"
 label_settings = SubResource("LabelSettings_psvll")
 horizontal_alignment = 1
+
+[node name="Ox" parent="." node_paths=PackedStringArray("world") instance=ExtResource("8_42wpl")]
+position = Vector2(-40, 44)
+world = NodePath("..")
+species = "Ox"
+sex = 1
+
+[node name="Ox2" parent="." node_paths=PackedStringArray("world") instance=ExtResource("8_42wpl")]
+position = Vector2(34, -88)
+world = NodePath("..")
+species = "Ox"
+
+[node name="Ox3" parent="." node_paths=PackedStringArray("world") instance=ExtResource("8_42wpl")]
+position = Vector2(-112, -134)
+world = NodePath("..")
+species = "Ox"
 
 [connection signal="mouse_entered" from="GUI/MarginContainer/TimePanel" to="." method="_on_time_panel_mouse_entered"]
 [connection signal="mouse_exited" from="GUI/MarginContainer/TimePanel" to="." method="_on_time_panel_mouse_exited"]
