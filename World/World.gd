@@ -17,7 +17,7 @@ const TIME_UNIT_SETTINGS := [
 @onready var timeSpeedLabel: Label = $GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer/TimeSpeedLabel
 @onready var flashWarningLabel: Label = $GUI/FlashWarningLabel
 
-var ingameTimestamp := float(Time.get_unix_time_from_system() + Time.get_time_zone_from_system().bias)
+var ingameTimestamp := (float(Time.get_unix_time_from_system() + Time.get_time_zone_from_system().bias))
 var currentTimeUnit := 1
 
 func manage_time_and_light_level() -> void:
@@ -39,7 +39,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	manage_time_and_light_level()
 
-func _on_time_speed_slider_value_changed(value: float) -> void:
+func _on_time_speed_slider_value_changed(_value: float) -> void:
 	change_time_speed_label()
 
 func _on_time_unit_selected(index: int) -> void:
@@ -50,3 +50,7 @@ func _on_time_unit_selected(index: int) -> void:
 	currentTimeUnit = index
 	
 	change_time_speed_label()
+
+func _input(event: InputEvent) -> void:
+	if (event.is_action_pressed("DEBUG_reset")):
+		get_tree().reload_current_scene()

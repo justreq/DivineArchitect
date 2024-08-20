@@ -15,6 +15,8 @@ size = Vector2(25, 36)
 
 [node name="Ox" type="CharacterBody2D" groups=["Animal"]]
 script = ExtResource("1_cbmqq")
+species = null
+sex = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m75ir")
@@ -36,8 +38,4 @@ position = Vector2(0, 3.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_p4i77")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 18.0
-vertices = PackedVector2Array(-18, 12, -14, 16, 14, 16, 18, 12, 14, 8, -14, 8)
-
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

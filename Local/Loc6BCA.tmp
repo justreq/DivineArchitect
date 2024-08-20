@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr1rp07sir5f5"]
+[gd_scene load_steps=6 format=3 uid="uid://cr1rp07sir5f5"]
 
 [ext_resource type="Texture2D" uid="uid://cteunv4e8v1pa" path="res://Local/Local.png" id="1_3lkol"]
 [ext_resource type="Script" path="res://Local/Local.gd" id="1_8vnxa"]
@@ -11,19 +11,11 @@ height = 12.0
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_83p0c"]
 polygon = PackedVector2Array(6, 0, 4, -2, -4, -2, -6, 0, -4, 2, 4, 2)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qpaeq"]
-radius = 16.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_40kdt"]
-radius = 1.0
-
 [node name="Local" type="CharacterBody2D" groups=["Local"]]
-collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_8vnxa")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -106,28 +98,4 @@ shape = SubResource("CapsuleShape2D_puorg")
 occluder = SubResource("OccluderPolygon2D_83p0c")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-
-[node name="InteractionRange" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
-shape = SubResource("CircleShape2D_qpaeq")
-
-[node name="GrabPoint" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabPoint"]
-shape = SubResource("CircleShape2D_40kdt")
-
-[node name="GrabbedItem" type="Node2D" parent="."]
-position = Vector2(0, -14)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 5.95
-vertices = PackedVector2Array(-6, 0, -4, 2, 4, 2, 6, 0, 4, -2, -4, -2)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[connection signal="area_entered" from="InteractionRange" to="." method="_on_interaction_range_area_entered"]
-[connection signal="area_entered" from="GrabPoint" to="." method="_on_grab_point_area_entered"]
-[connection signal="child_entered_tree" from="GrabbedItem" to="." method="_on_grabbed_item"]
+debug_enabled = true
