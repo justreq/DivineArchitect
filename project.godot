@@ -23,6 +23,17 @@ Utils="*res://Utils.gd"
 
 project/assembly_name="DivineArchitect"
 
+[editor]
+
+naming/default_signal_callback_name="on{node_name}{signal_name}"
+naming/default_signal_callback_to_self_name="on{signal_name}"
+naming/scene_name_casing=1
+naming/script_name_casing=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/globalize-plugins/plugin.cfg")
+
 [input]
 
 DEBUG_reset={

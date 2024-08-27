@@ -32,7 +32,7 @@ tile_map_data = PackedByteArray("AAD8////AAAEAAAAAAD8/wAAAAAEAAAAAAD9/wEAAAAEAAA
 navigation_visibility_mode = 0
 
 [node name="Objects" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD8//j/AAAAAAAAAQAAAPn/AAAAAAAAAQAEAPv/AAAAAAAAAQD4//r/AAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD8//b/AAAAAAAAAQABAPf/AAAAAAAAAQAFAPr/AAAAAAAAAQD+//f/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_38hwo")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

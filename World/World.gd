@@ -11,6 +11,7 @@ const TIME_UNIT_SETTINGS := [
 ]
 
 @onready var light := $PointLight2D
+@onready var objects: TileMapLayer = $Objects
 
 @onready var timeLabel: Label = $GUI/MarginContainer/TimePanel/VBoxContainer/TimeLabel
 @onready var timeSpeedSlider: HSlider = $GUI/MarginContainer/TimePanel/VBoxContainer/HBoxContainer/TimeSpeedSlider
@@ -36,7 +37,16 @@ func change_time_speed_label() -> void:
 func _ready() -> void:
 	change_time_speed_label()
 
-func _physics_process(_delta: float) -> void:
+var framesSinceReady := 0
+
+func _process(_delta: float) -> void:
+	if framesSinceReady == 1:
+		for i in range(objects.get_child_count()):
+			objects.get_child(i).frame = i % 4
+	
+	if framesSinceReady < 2:
+		framesSinceReady += 1
+	
 	manage_time_and_light_level()
 
 func _on_time_speed_slider_value_changed(_value: float) -> void:

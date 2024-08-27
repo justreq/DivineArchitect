@@ -1,19 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://cr1rp07sir5f5"]
 
 [ext_resource type="Script" path="res://Local/Local.gd" id="1_8vnxa"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rybcm"]
-radius = 6.0
+[ext_resource type="PackedScene" uid="uid://bpkpt0l7dd30c" path="res://Components/Entity/SexComponent.tscn" id="2_pr4v5"]
 
 [node name="Local" type="CharacterBody2D"]
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_8vnxa")
 
-[node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-rotation = 1.5708
-shape = SubResource("CircleShape2D_rybcm")
+[node name="Components" type="Node" parent="."]
+
+[node name="SexComponent" parent="Components" instance=ExtResource("2_pr4v5")]
+Sex = 0
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -8)

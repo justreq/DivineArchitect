@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ldawq81tw75n"]
+
+[ext_resource type="Script" path="res://Animals/Animal.gd" id="1_bybgf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lq3pg"]
+radius = 6.0
+
+[node name="Animal" type="CharacterBody2D"]
+script = ExtResource("1_bybgf")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_lq3pg")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)

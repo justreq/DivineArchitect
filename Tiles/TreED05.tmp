@@ -3,22 +3,23 @@
 [ext_resource type="Texture2D" uid="uid://dsuha2jqmk8nt" path="res://Tiles/Tree.png" id="1_5m1kn"]
 [ext_resource type="Script" path="res://Tiles/Tree.gd" id="1_gxidi"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e25ww"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q82v3"]
+radius = 4.0
+height = 16.0
 
-[node name="Tree" type="StaticBody2D" groups=["Trees"]]
+[node name="Tree" type="StaticBody2D"]
 script = ExtResource("1_gxidi")
-frame = 3
+State = null
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
 rotation = 1.5708
-shape = SubResource("CircleShape2D_e25ww")
+shape = SubResource("CapsuleShape2D_q82v3")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -28)
 texture = ExtResource("1_5m1kn")
 hframes = 4
+frame = 2
 region_rect = Rect2(0, 0, 48, 64)
 
 [node name="NavigationObstacle" type="NavigationObstacle2D" parent="."]

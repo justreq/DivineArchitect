@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q5sa6j0af18p"
-path="res://.godot/imported/Ox.png-a67260eed1ca88e86de757cc66439d37.ctex"
+uid="uid://buck0tte1wgcu"
+path="res://.godot/imported/OxMale.png-59de2c1c8678b6f8a912a029a399eaa6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/Ox.png"
-dest_files=["res://.godot/imported/Ox.png-a67260eed1ca88e86de757cc66439d37.ctex"]
+source_file="res://Animals/OxMale.png"
+dest_files=["res://.godot/imported/OxMale.png-59de2c1c8678b6f8a912a029a399eaa6.ctex"]
 
 [params]
 

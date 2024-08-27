@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l510wunfhyup"
-path="res://.godot/imported/RawMeat.png-a49252d217c06b4df14d31faa7b6825b.ctex"
+uid="uid://bx4aiuhttfqbl"
+path="res://.godot/imported/OxFemale.png-0c2d0f38eef8870a3be15f2dabb5c756.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/RawMeat.png"
-dest_files=["res://.godot/imported/RawMeat.png-a49252d217c06b4df14d31faa7b6825b.ctex"]
+source_file="res://Animals/OxFemale.png"
+dest_files=["res://.godot/imported/OxFemale.png-0c2d0f38eef8870a3be15f2dabb5c756.ctex"]
 
 [params]
 
