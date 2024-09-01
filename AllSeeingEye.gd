@@ -1,4 +1,4 @@
-extends Camera2D
+class_name AllSeeingEye extends Camera2D
 
 var dragging := false
 var dragStartPosition := Vector2.ZERO

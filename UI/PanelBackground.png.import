@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci8y2es8jxtu4"
-path="res://.godot/imported/WorldLightTexture.webp-26319055c7c25e44ccf2242d3676ba12.ctex"
+uid="uid://cveu276kj8aje"
+path="res://.godot/imported/PanelBackground.png-c2f85f28d0cb055e6dbda7d1d8ca6557.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/WorldLightTexture.webp"
-dest_files=["res://.godot/imported/WorldLightTexture.webp-26319055c7c25e44ccf2242d3676ba12.ctex"]
+source_file="res://UI/PanelBackground.png"
+dest_files=["res://.godot/imported/PanelBackground.png-c2f85f28d0cb055e6dbda7d1d8ca6557.ctex"]
 
 [params]
 
