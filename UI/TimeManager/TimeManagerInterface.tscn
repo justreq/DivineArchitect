@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://deg2t01wiyfk6"]
+
+[ext_resource type="Script" path="res://UI/TimeManager/TimeManagerInterface.gd" id="1_3affs"]
+[ext_resource type="Texture2D" uid="uid://brsq7dcd22kph" path="res://UI/TimeManager/ClockBackground.png" id="1_pl8ok"]
+[ext_resource type="Texture2D" uid="uid://nrxl2dmkge3q" path="res://UI/TimeManager/ClockHandHour.png" id="2_k6mkm"]
+[ext_resource type="Texture2D" uid="uid://caloruw2xhxhd" path="res://UI/TimeManager/ClockHandMinute.png" id="3_fpu3c"]
+[ext_resource type="StyleBox" uid="uid://dulggl1mmlnmp" path="res://UI/PanelStyle.tres" id="5_mvlst"]
+[ext_resource type="FontFile" uid="uid://nlmcbn8c42tx" path="res://Assets/Fonts/PixelTactical.ttf" id="6_d6si8"]
+
+[node name="TimeManagerInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_3affs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("5_mvlst")
+
+[node name="DateTimePanel" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="DateTimeLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/DateTimePanel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("6_d6si8")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Clock" type="Node2D" parent="VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+
+[node name="ClockBackground" type="Sprite2D" parent="VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Clock"]
+texture = ExtResource("1_pl8ok")
+centered = false
+
+[node name="ClockHandMinute" type="Sprite2D" parent="VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Clock"]
+position = Vector2(64, 64)
+texture = ExtResource("3_fpu3c")
+centered = false
+offset = Vector2(-4, -44)
+
+[node name="ClockHandHour" type="Sprite2D" parent="VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Clock"]
+position = Vector2(64, 64)
+texture = ExtResource("2_k6mkm")
+centered = false
+offset = Vector2(-4, -20)
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = ExtResource("5_mvlst")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TimeSpeedPanel" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TimeSpeedLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/TimeSpeedPanel"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_d6si8")
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
+
+[node name="TimeScaleSlider" type="HSlider" parent="VBoxContainer/PanelContainer/MarginContainer/TimeSpeedPanel"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 7.0
+value = 1.0
+scrollable = false
+
+[connection signal="drag_ended" from="VBoxContainer/PanelContainer/MarginContainer/TimeSpeedPanel/TimeScaleSlider" to="." method="onTimeScaleSliderDragEnded"]
+[connection signal="value_changed" from="VBoxContainer/PanelContainer/MarginContainer/TimeSpeedPanel/TimeScaleSlider" to="." method="onTimeScaleSliderValueChanged"]

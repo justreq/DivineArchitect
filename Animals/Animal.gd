@@ -1,24 +1,32 @@
 class_name Animal extends CharacterBody2D
 
-@onready var Sprite := $Sprite
+@onready var ageManager: AgeManager = $AgeManager
+@onready var sprite := $Sprite
 
-@export var sex: Utils.Sex:
-	get:
-		return sex
+@export_category("Constants")
+@export var world: World
+@export var type: Utils.AnimalType
+@export var sex: Utils.Sex
+@export var fullName: String
+
+@export_category("State")
+@export var state: Utils.State:
 	set(value):
-		sex = value
-		SetSprite()
+		state = value
 
-@export var type: Utils.AnimalType:
-	get:
-		return type
-	set(value):
-		type = value
-		SetSprite()
+func die():
+	if Main.focusedNode == self:
+		Main.focusedNode = null
+	
+	state = Utils.State.Dead
+	process_mode = PROCESS_MODE_DISABLED
 
-func SetSprite() -> void:
-	if Sprite:
-		Sprite.texture = load("res://Animals/{}{}.png".format([Utils.AnimalType.keys()[type], Utils.Sex.keys()[sex]], "{}"))
+func initialize(world: World, type: Utils.AnimalType, sex: Utils.Sex, fullName: String) -> void:
+	self.world = world
+	self.type = type
+	self.sex = sex
+	self.fullName = name
 
 func _ready() -> void:
-	SetSprite()
+	ageManager.lifespanSeconds = Utils.timeUnitsToSeconds(Utils.TimeUnit.Year) * Utils.ANIMAL_LIFESPANS[type]
+	sprite.texture = load("res://Animals/{}{}.png".format([Utils.AnimalType.keys()[type], Utils.Sex.keys()[sex]], "{}"))

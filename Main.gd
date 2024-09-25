@@ -3,8 +3,12 @@ extends Node
 var currentWorld: World
 var currentArea: Utils.Area
 
-func _ready() -> void:
-	currentWorld = get_tree().current_scene
-	
-	var allSeeingEye := AllSeeingEye.new()
-	currentWorld.add_child(allSeeingEye)
+var hoveredNode: Node = null
+var focusedNode: Node = null:
+	set(value):
+		focusedNode = value
+		
+		if value is Local:
+			Main.currentWorld.localInfoInterface.local = Main.focusedNode
+		else:
+			Main.currentWorld.localInfoInterface.local = null

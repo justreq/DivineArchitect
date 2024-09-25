@@ -1,0 +1,188 @@
+[gd_scene load_steps=14 format=3 uid="uid://blqpartn8k6av"]
+
+[ext_resource type="StyleBox" uid="uid://dulggl1mmlnmp" path="res://UI/PanelStyle.tres" id="1_2denq"]
+[ext_resource type="Script" path="res://UI/LocalInfo/LocalInfoInterface.gd" id="1_6fbv6"]
+[ext_resource type="Texture2D" uid="uid://dg06xlsylvpx6" path="res://UI/LocalInfo/MotiveIconHunger.png" id="2_6g7id"]
+[ext_resource type="PackedScene" uid="uid://dlorngg4tuhih" path="res://UI/LocalInfo/StatColumn.tscn" id="2_7hkt8"]
+[ext_resource type="FontFile" uid="uid://nlmcbn8c42tx" path="res://Assets/Fonts/PixelTactical.ttf" id="2_xcxd7"]
+[ext_resource type="Texture2D" uid="uid://c86fk4ewpay20" path="res://UI/LocalInfo/MotiveIconThirst.png" id="4_i4ji6"]
+[ext_resource type="Texture2D" uid="uid://caddard1t60nt" path="res://UI/LocalInfo/MotiveIconEnergy.png" id="5_djxwn"]
+[ext_resource type="Texture2D" uid="uid://cot2p13uxieli" path="res://UI/LocalInfo/LocalIconFaith.png" id="5_ht608"]
+
+[sub_resource type="Animation" id="Animation_eu18n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_anx4b"]
+resource_name = "hide"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, -384), Vector2(16, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_slsf1"]
+resource_name = "show"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, 0), Vector2(16, -384)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcras"]
+_data = {
+"RESET": SubResource("Animation_eu18n"),
+"hide": SubResource("Animation_anx4b"),
+"show": SubResource("Animation_slsf1")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q854"]
+bg_color = Color(0.4, 0.223529, 0.192157, 0.498039)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LocalInfoInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_6fbv6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fcras")
+}
+autoplay = "RESET"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_right = 296.0
+offset_bottom = 368.0
+theme_override_styles/panel = ExtResource("1_2denq")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xcxd7")
+theme_override_font_sizes/font_size = 24
+
+[node name="SexIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="InfoLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xcxd7")
+theme_override_font_sizes/font_size = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3q854")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="FaithColumn" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_7hkt8")]
+unique_name_in_owner = true
+layout_mode = 2
+stat = "Faith"
+icon = ExtResource("5_ht608")
+
+[node name="HungerMotiveColumn" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_7hkt8")]
+unique_name_in_owner = true
+layout_mode = 2
+stat = "Hunger"
+icon = ExtResource("2_6g7id")
+
+[node name="ThirstMotiveColumn" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_7hkt8")]
+unique_name_in_owner = true
+layout_mode = 2
+stat = "Thirst"
+icon = ExtResource("4_i4ji6")
+
+[node name="EnergyMotiveColumn" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_7hkt8")]
+unique_name_in_owner = true
+layout_mode = 2
+stat = "Energy"
+icon = ExtResource("5_djxwn")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="onAnimationFinished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="onAnimationStarted"]

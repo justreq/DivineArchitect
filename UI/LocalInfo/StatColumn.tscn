@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlorngg4tuhih"]
+
+[ext_resource type="Script" path="res://UI/LocalInfo/StatColumn.gd" id="1_0l3rv"]
+[ext_resource type="Texture2D" uid="uid://dxcp1o8bhpke0" path="res://UI/LocalInfo/MotiveBarOuter.png" id="2_1q0ct"]
+[ext_resource type="Texture2D" uid="uid://dnkewhed6ak5w" path="res://UI/LocalInfo/MotiveBarInner.png" id="3_ed17o"]
+
+[node name="MotiveColumn" type="VBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+offset_right = 48.0
+offset_bottom = 244.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_0l3rv")
+
+[node name="Bar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+max_value = 1.0
+step = 0.01
+fill_mode = 3
+texture_under = ExtResource("2_1q0ct")
+texture_progress = ExtResource("3_ed17o")
+texture_progress_offset = Vector2(2, 2)
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+tooltip_text = ": 0%"
+stretch_mode = 3

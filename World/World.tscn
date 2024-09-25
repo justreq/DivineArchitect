@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://fy5g52cuax2c"]
+[gd_scene load_steps=10 format=4 uid="uid://fy5g52cuax2c"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_gqys1"]
 [ext_resource type="PackedScene" uid="uid://dgk3fao6txbbi" path="res://Tiles/Tiles.tscn" id="2_d73su"]
+[ext_resource type="PackedScene" uid="uid://8oaaywiu1v5u" path="res://World/WorldCamera.tscn" id="2_naquw"]
 [ext_resource type="PackedScene" uid="uid://exmdcnjl3op5" path="res://Tiles/Tree.tscn" id="3_v7w8p"]
-[ext_resource type="PackedScene" uid="uid://5v38twxq7mi5" path="res://World/TimeManager.tscn" id="6_3u4bb"]
+[ext_resource type="PackedScene" uid="uid://5v38twxq7mi5" path="res://Components/TimeManager.tscn" id="6_3u4bb"]
 [ext_resource type="Texture2D" uid="uid://ci8y2es8jxtu4" path="res://Assets/WorldLightTexture.webp" id="6_5mfro"]
+[ext_resource type="PackedScene" uid="uid://blqpartn8k6av" path="res://UI/LocalInfo/LocalInfoInterface.tscn" id="7_yulmo"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mbrv5"]
 resource_name = "Tree"
@@ -15,6 +17,8 @@ sources/0 = SubResource("TileSetScenesCollectionSource_mbrv5")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_gqys1")
+
+[node name="WorldCamera" parent="." instance=ExtResource("2_naquw")]
 
 [node name="TimeManager" parent="." instance=ExtResource("6_3u4bb")]
 
@@ -33,3 +37,9 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_scale = 4.0
+
+[node name="LocalInfoInterface" parent="CanvasLayer" instance=ExtResource("7_yulmo")]
