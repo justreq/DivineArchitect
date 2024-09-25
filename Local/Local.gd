@@ -1,6 +1,9 @@
 class_name Local extends CharacterBody2D
 
+@onready var animationPlayer := $AnimationPlayer
 @onready var ageManager: AgeManager = $AgeManager
+@onready var movementManager: MovementManager = $MovementManager
+
 @onready var spriteShirt := $Sprites/SpriteShirt
 @onready var spritePants := $Sprites/SpritePants
 @onready var spriteShoes := $Sprites/SpriteShoes
@@ -110,6 +113,8 @@ func _physics_process(delta: float) -> void:
 	spritePants.texture = load("res://Local/Idle/Pants{}{}.png".format([pants, Utils.State.keys()[state]], "{}"))
 	spriteShirt.texture = load("res://Local/Idle/Shirt{}{}.png".format([shirt, Utils.State.keys()[state]], "{}"))
 	spriteHair.texture = load("res://Local/Idle/Hair{}{}.png".format([sex + 1, Utils.State.keys()[state]], "{}"))
+	
+	animationPlayer.play(Utils.State.keys()[state] + Utils.Direction.keys()[Utils.vectorToDirection(movementManager.lastMovedDirection)])
 	
 	motiveHunger -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 55) * (2 if state == Utils.State.Sleeping else 1))
 	motiveThirst -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 3) * (2 if state == Utils.State.Sleeping else 1))

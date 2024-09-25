@@ -29,6 +29,14 @@ func secondsToTimeUnits(amount: int, unit: TimeUnit) -> float:
 	
 	return value
 
+enum Direction { Up, Left, Down, Right }
+
+func vectorToDirection(direction: Vector2):
+	if direction.x == 0:
+		return Direction.Up if direction.y == -1 else Direction.Down
+	
+	return Direction.Left if direction.x < 0 else Direction.Right
+
 enum Area { Forest }
 
 enum Sex { Male, Female }
