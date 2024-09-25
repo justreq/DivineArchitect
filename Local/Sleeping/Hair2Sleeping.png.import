@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gov26i1nstmy"
-path="res://.godot/imported/LegsIdle.png-6bf0ac35e2a845efa9b100c7491682a1.ctex"
+uid="uid://pfb2so36yjda"
+path="res://.godot/imported/Hair2Sleeping.png-d7f0bc173b84249f58aa8d40edf469cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/Idle/LegsIdle.png"
-dest_files=["res://.godot/imported/LegsIdle.png-6bf0ac35e2a845efa9b100c7491682a1.ctex"]
+source_file="res://Local/Sleeping/Hair2Sleeping.png"
+dest_files=["res://.godot/imported/Hair2Sleeping.png-d7f0bc173b84249f58aa8d40edf469cd.ctex"]
 
 [params]
 

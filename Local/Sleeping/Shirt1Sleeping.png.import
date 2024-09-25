@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgt5h6xsu6r11"
-path="res://.godot/imported/Shoes1Idle.png-dd9bf31d8e07773d41092c69221ac39d.ctex"
+uid="uid://diolcwlqxn2gn"
+path="res://.godot/imported/Shirt1Sleeping.png-76bec9e92041e05b406704302ca4d3e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/Idle/Shoes1Idle.png"
-dest_files=["res://.godot/imported/Shoes1Idle.png-dd9bf31d8e07773d41092c69221ac39d.ctex"]
+source_file="res://Local/Sleeping/Shirt1Sleeping.png"
+dest_files=["res://.godot/imported/Shirt1Sleeping.png-76bec9e92041e05b406704302ca4d3e4.ctex"]
 
 [params]
 

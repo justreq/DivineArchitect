@@ -40,7 +40,7 @@ func vectorToDirection(direction: Vector2):
 enum Area { Forest }
 
 enum Sex { Male, Female }
-enum State { Idle, Dead, Sleeping }
+enum State { None, Dead, Sleeping }
 
 enum AnimalType { Ox }
 const ANIMAL_LIFESPANS := [20]

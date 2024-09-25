@@ -105,14 +105,14 @@ func _ready() -> void:
 	spriteHair.self_modulate = hairColor
 
 func _physics_process(delta: float) -> void:
-	spriteHead.texture = load("res://Local/Idle/Head{}.png".format([Utils.State.keys()[state]], "{}"))
-	spriteTorso.texture = load("res://Local/Idle/Torso{}.png".format([Utils.State.keys()[state]], "{}"))
-	spriteArms.texture = load("res://Local/Idle/Arms{}.png".format([Utils.State.keys()[state]], "{}"))
-	spriteLegs.texture = load("res://Local/Idle/Legs{}.png".format([Utils.State.keys()[state]], "{}"))
-	spriteShoes.texture = load("res://Local/Idle/Shoes{}{}.png".format([shoes, Utils.State.keys()[state]], "{}"))
-	spritePants.texture = load("res://Local/Idle/Pants{}{}.png".format([pants, Utils.State.keys()[state]], "{}"))
-	spriteShirt.texture = load("res://Local/Idle/Shirt{}{}.png".format([shirt, Utils.State.keys()[state]], "{}"))
-	spriteHair.texture = load("res://Local/Idle/Hair{}{}.png".format([sex + 1, Utils.State.keys()[state]], "{}"))
+	spriteHead.texture = load("res://Local/{}/Head{}.png".format([Utils.State.keys()[state], Utils.State.keys()[state]], "{}"))
+	spriteTorso.texture = load("res://Local/{}/Torso{}.png".format([Utils.State.keys()[state], Utils.State.keys()[state]], "{}"))
+	spriteArms.texture = load("res://Local/{}/Arms{}.png".format([Utils.State.keys()[state], Utils.State.keys()[state]], "{}"))
+	spriteLegs.texture = load("res://Local/{}/Legs{}.png".format([Utils.State.keys()[state], Utils.State.keys()[state]], "{}"))
+	spriteShoes.texture = load("res://Local/{}/Shoes{}{}.png".format([Utils.State.keys()[state], shoes, Utils.State.keys()[state]], "{}"))
+	spritePants.texture = load("res://Local/{}/Pants{}{}.png".format([Utils.State.keys()[state], pants, Utils.State.keys()[state]], "{}"))
+	spriteShirt.texture = load("res://Local/{}/Shirt{}{}.png".format([Utils.State.keys()[state], shirt, Utils.State.keys()[state]], "{}"))
+	spriteHair.texture = load("res://Local/{}/Hair{}{}.png".format([Utils.State.keys()[state], sex + 1, Utils.State.keys()[state]], "{}"))
 	
 	animationPlayer.play(Utils.State.keys()[state] + Utils.Direction.keys()[Utils.vectorToDirection(movementManager.lastMovedDirection)])
 	
@@ -126,4 +126,4 @@ func _physics_process(delta: float) -> void:
 	if world.timeManager.ingameDateTimeObject.Hour > 1 and world.timeManager.ingameDateTimeObject.Hour < 7:
 		state = Utils.State.Sleeping
 	else:
-		state = Utils.State.Idle
+		state = Utils.State.None

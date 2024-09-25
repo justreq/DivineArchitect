@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckikd4kfhw4q7"
-path="res://.godot/imported/HeadIdle.png-8389d83d219e4c6751bc2307a7b5cebf.ctex"
+uid="uid://bo2la2vo0kpag"
+path="res://.godot/imported/TorsoSleeping.png-095ba242e98113d60cbbd848a834282c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/Idle/HeadIdle.png"
-dest_files=["res://.godot/imported/HeadIdle.png-8389d83d219e4c6751bc2307a7b5cebf.ctex"]
+source_file="res://Local/Sleeping/TorsoSleeping.png"
+dest_files=["res://.godot/imported/TorsoSleeping.png-095ba242e98113d60cbbd848a834282c.ctex"]
 
 [params]
 

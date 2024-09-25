@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7becb1ad435g"
-path="res://.godot/imported/ArmsIdle.png-d380ffdea8dcee804a6267411ab935cb.ctex"
+uid="uid://ckikd4kfhw4q7"
+path="res://.godot/imported/HeadNone.png-5def72257f2a40a33fb2dfffc350d609.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/Idle/ArmsIdle.png"
-dest_files=["res://.godot/imported/ArmsIdle.png-d380ffdea8dcee804a6267411ab935cb.ctex"]
+source_file="res://Local/None/HeadNone.png"
+dest_files=["res://.godot/imported/HeadNone.png-5def72257f2a40a33fb2dfffc350d609.ctex"]
 
 [params]
 
