@@ -1,6 +1,6 @@
 class_name MovementManager extends Node
 
-@export var moveSpeed := 3000.0
+@export var moveSpeed := 1500.0
 
 var lastMovedDirection := Vector2.ZERO
 var direction := Vector2.ZERO

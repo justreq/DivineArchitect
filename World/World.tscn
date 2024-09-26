@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://fy5g52cuax2c"]
+[gd_scene load_steps=11 format=4 uid="uid://fy5g52cuax2c"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_gqys1"]
 [ext_resource type="PackedScene" uid="uid://dgk3fao6txbbi" path="res://Tiles/Tiles.tscn" id="2_d73su"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5v38twxq7mi5" path="res://Components/TimeManager.tscn" id="6_3u4bb"]
 [ext_resource type="Texture2D" uid="uid://ci8y2es8jxtu4" path="res://Assets/WorldLightTexture.webp" id="6_5mfro"]
 [ext_resource type="PackedScene" uid="uid://blqpartn8k6av" path="res://UI/LocalInfo/LocalInfoInterface.tscn" id="7_yulmo"]
+[ext_resource type="PackedScene" uid="uid://cr1rp07sir5f5" path="res://Local/Local.tscn" id="8_58kdh"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mbrv5"]
 resource_name = "Tree"
@@ -43,3 +44,26 @@ layer = 2
 follow_viewport_scale = 4.0
 
 [node name="LocalInfoInterface" parent="CanvasLayer" instance=ExtResource("7_yulmo")]
+
+[node name="Adam" parent="." node_paths=PackedStringArray("world") instance=ExtResource("8_58kdh")]
+position = Vector2(-32, 24)
+world = NodePath("..")
+fullName = "Adam"
+skinColor = Color(0.823529, 0.654902, 0.462745, 1)
+hairColor = Color(0.254902, 0.160784, 0.0941176, 1)
+shirtBodyColor = Color(0.490196, 0.0588235, 0.0588235, 1)
+shirtArmsColor = Color(0.396879, 0.0394474, 0.0394029, 1)
+pantsColor = Color(0.160784, 0.180392, 0.333333, 1)
+shoesColor = Color(0.270588, 0.188235, 0.0941176, 1)
+
+[node name="Eve" parent="." node_paths=PackedStringArray("world") instance=ExtResource("8_58kdh")]
+position = Vector2(30, 29)
+world = NodePath("..")
+sex = 1
+fullName = "Eve"
+skinColor = Color(0.823529, 0.654902, 0.462745, 1)
+hairColor = Color(0.254902, 0.160784, 0.0941176, 1)
+shirtBodyColor = Color(0.270738, 0.613708, 0.340774, 1)
+shirtArmsColor = Color(0.175289, 0.414457, 0.224584, 1)
+pantsColor = Color(0.355221, 0.377989, 0.755646, 1)
+shoesColor = Color(0.270588, 0.188235, 0.0941176, 1)

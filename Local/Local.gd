@@ -14,55 +14,73 @@ class_name Local extends CharacterBody2D
 
 var textures := {}
 
-var world: World
-var sex: Utils.Sex
-var fullName: String
-var occupation: Utils.LocalOccupation
+@export_category("Properties")
+@export var world: World
+@export var sex: Utils.Sex
+@export var fullName: String
+@export var occupation: Utils.LocalOccupation
+@export var state: Utils.State:
+	set(value):
+		if state == value:
+			return
+		
+		state = value
+		setTextures()
 
-var skinColor: Color:
+@export_category("Colors")
+@export var skinColor: Color:
 	set(value):
 		skinColor = value
+		$Sprites/SpriteBody.self_modulate = value
+		$Sprites/SpriteArms.self_modulate = value
 
-var hairColor: Color:
+@export var hairColor: Color:
 	set(value):
 		hairColor = value
+		$Sprites/SpriteHair.self_modulate = value
 
-var shirtColor: Color:
+@export var shirtBodyColor: Color:
 	set(value):
-		shirtColor = value
+		shirtBodyColor = value
+		$Sprites/SpriteShirtBody.self_modulate = value
 
-var pantsColor: Color:
+@export var shirtArmsColor: Color:
+	set(value):
+		shirtArmsColor = value
+		$Sprites/SpriteShirtArms.self_modulate = value
+
+@export var pantsColor: Color:
 	set(value):
 		pantsColor = value
+		$Sprites/SpritePants.self_modulate = value
 
-var shoesColor: Color:
+@export var shoesColor: Color:
 	set(value):
 		shoesColor = value
+		$Sprites/SpriteShoes.self_modulate = value
 
-var shirt: int:
+@export_category("Clothing")
+@export var shirt: int:
 	set(value):
 		shirt = value
 
-var pants: int:
+@export var pants: int:
 	set(value):
 		pants = value
 
-var shoes: int:
+@export var shoes: int:
 	set(value):
 		shoes = value
 
-var hair: int:
+@export var hair: int:
 	set(value):
 		hair = value
 
-var state: Utils.State:
-	set(value):
-		state = value
-
-var faith := 1.0
+@export_category("Motives")
+@export var faith := 1.0
 
 var moodletHunger: Utils.MoodletHunger
-var motiveHunger := 1.0:
+@export var motiveHunger := 1.0:
 	set(value):
 		if value <= 0.0:
 			die()
@@ -72,7 +90,7 @@ var motiveHunger := 1.0:
 		moodletHunger = setMoodlet(value)
 
 var moodletThirst: Utils.MoodletThirst
-var motiveThirst := 1.0:
+@export var motiveThirst := 1.0:
 	set(value):
 		if value <= 0.0:
 			die()
@@ -82,7 +100,7 @@ var motiveThirst := 1.0:
 		moodletThirst = setMoodlet(value)
 
 var moodletEnergy: Utils.MoodletEnergy
-var motiveEnergy := 1.0:
+@export var motiveEnergy := 1.0:
 	set(value):
 		if value <= 0.0:
 			state = Utils.State.Sleeping
@@ -94,20 +112,22 @@ var motiveEnergy := 1.0:
 func setMoodlet(value: float):
 	return 0
 
-func initialize(world: World, sex: Utils.Sex, fullName: String, occupation: Utils.LocalOccupation, skinColor: Color, hairColor: Color) -> void:
-	self.world = world
-	self.sex = sex
-	self.fullName = fullName
-	self.occupation = occupation
-	self.skinColor = skinColor
-	self.hairColor = hairColor
-
 func loadTextures():
 	for i in DirAccess.get_directories_at("res://Local/Textures"):
 		for j in Array(DirAccess.get_files_at("res://Local/Textures/" + i)).filter(func(e): return e.get_extension() == "png"):
 			textures[j.left(-4)] = load("res://Local/Textures/" + i + "/" + j)
 
+func setTextures():
+	spriteBody.texture = textures["Body" + Utils.State.keys()[state]]
+	#spritePants.texture = textures["Pants" + str(pants) + Utils.State.keys()[value]]
+	#spriteShoes.texture = textures["Shoes" + str(shoes) + Utils.State.keys()[value]]
+	spriteArms.texture = textures["Arms" + Utils.State.keys()[state]]
+	#spriteShirtBody.texture = textures["ShirtBody" + str(shirt) + Utils.State.keys()[value]]
+	#spriteShirtArms.texture = textures["ShirtArms" + str(shirtArms) + Utils.State.keys()[value]]
+	#spriteHair.texture = textures["Hair" + str(hair) + Utils.State.keys()[value]]
+
 func die():
+	return
 	if Main.focusedNode == self:
 		Main.focusedNode = null
 	
@@ -118,14 +138,14 @@ func _init() -> void:
 	loadTextures()
 
 func _ready() -> void:
+	setTextures()
 	ageManager.lifespanSeconds = Utils.timeUnitsToSeconds(Utils.TimeUnit.Year) * 40
-	hair = sex
-	shoesColor = Color("453018")
-	pantsColor = Color("292e55") if sex == Utils.Sex.Male else Color("4b4faa")
-	shirtColor = Color("7d0f0f") if sex == Utils.Sex.Male else Color("588842")
 
 func _physics_process(delta: float) -> void:
 	animationPlayer.play(Utils.State.keys()[state] + Utils.Direction.keys()[Utils.vectorToDirection(movementManager.lastMovedDirection)])
+	
+	if state == Utils.State.None and movementManager.direction == Vector2.ZERO:
+		animationPlayer.stop()
 	
 	motiveHunger -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 55) * (2 if state == Utils.State.Sleeping else 1))
 	motiveThirst -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 3) * (2 if state == Utils.State.Sleeping else 1))
