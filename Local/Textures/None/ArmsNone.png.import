@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgt5h6xsu6r11"
-path="res://.godot/imported/Shoes1None.png-5b1bf6c012b8513940c12a7a613e113e.ctex"
+uid="uid://ni2imu1mlnb5"
+path="res://.godot/imported/ArmsNone.png-c461e11d2d1b265324e7bc44c5ed7ddd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/None/Shoes1None.png"
-dest_files=["res://.godot/imported/Shoes1None.png-5b1bf6c012b8513940c12a7a613e113e.ctex"]
+source_file="res://Local/Textures/None/ArmsNone.png"
+dest_files=["res://.godot/imported/ArmsNone.png-c461e11d2d1b265324e7bc44c5ed7ddd.ctex"]
 
 [params]
 
