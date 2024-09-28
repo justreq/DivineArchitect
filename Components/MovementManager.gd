@@ -1,12 +1,23 @@
 class_name MovementManager extends Node
 
+signal directionChanged
+
 @export var moveSpeed := 1500.0
 
-var lastMovedDirection := Vector2.ZERO
+var lastMovedDirection := Vector2.ZERO:
+	set(value):
+		if oldDirection == direction:
+			return
+		
+		lastMovedDirection = value
+		directionChanged.emit()
+
+var oldDirection := Vector2.ZERO
 var direction := Vector2.ZERO
 
 func _input(event: InputEvent) -> void:
 	if Main.focusedNode and Main.focusedNode == get_parent() and Main.currentWorld.timeManager.timeScale == 1:
+		oldDirection = direction
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		
 		if direction != Vector2.ZERO:
@@ -16,8 +27,8 @@ func _physics_process(delta: float) -> void:
 	if get_parent().state in [Utils.State.Dead, Utils.State.Sleeping]:
 		return
 	
-	if (Main.focusedNode and Main.focusedNode != get_parent()) or Main.currentWorld.timeManager.timeScale != 1:
-		direction = Vector2.ZERO
+	if Main.focusedNode != get_parent() or Main.currentWorld.timeManager.timeScale != 1:
+		direction = Vector2.ZERO # Replace with pathfinding in the future
 	
 	get_parent().velocity = direction.normalized() * moveSpeed * (2 if Input.is_action_pressed("entity_run") else 1) * delta
 	get_parent().move_and_slide()

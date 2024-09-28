@@ -11,7 +11,7 @@ func _init() -> void:
 	Main.currentWorld = self
 
 func _ready() -> void:
-	timeManager.ingameTimestamp += Utils.timeUnitsToSeconds(Utils.TimeUnit.Day) / 2 # Skip to midday so I can see better
+	timeManager.ingameTimestamp += Utils.timeUnitsToSeconds(Utils.TimeUnit.Hour, 12)
 
 func _physics_process(_delta: float) -> void:
 	if timeManager.timeScale == 0:

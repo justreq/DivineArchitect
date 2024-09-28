@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv2tybpbexnpo"
-path="res://.godot/imported/ArmsSleeping.png-8e94e9f262ced7fa38f0d2df254da1f6.ctex"
+uid="uid://s8hrjmy7snvy"
+path="res://.godot/imported/Pants0None.png-921a394ac1d615af0965bc28c7267f42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Local/Textures/Sleeping/ArmsSleeping.png"
-dest_files=["res://.godot/imported/ArmsSleeping.png-8e94e9f262ced7fa38f0d2df254da1f6.ctex"]
+source_file="res://Local/Textures/None/Pants0None.png"
+dest_files=["res://.godot/imported/Pants0None.png-921a394ac1d615af0965bc28c7267f42.ctex"]
 
 [params]
 

@@ -67,3 +67,4 @@ shirtBodyColor = Color(0.270738, 0.613708, 0.340774, 1)
 shirtArmsColor = Color(0.175289, 0.414457, 0.224584, 1)
 pantsColor = Color(0.355221, 0.377989, 0.755646, 1)
 shoesColor = Color(0.270588, 0.188235, 0.0941176, 1)
+hair = 1

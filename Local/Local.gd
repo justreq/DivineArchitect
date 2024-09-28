@@ -5,12 +5,12 @@ class_name Local extends CharacterBody2D
 @onready var movementManager: MovementManager = $MovementManager
 
 @onready var spriteBody := $Sprites/SpriteBody
-@onready var spritePants := $Sprites/SpritePants
 @onready var spriteShoes := $Sprites/SpriteShoes
-@onready var spriteArms := $Sprites/SpriteArms
+@onready var spritePants := $Sprites/SpritePants
 @onready var spriteShirtBody := $Sprites/SpriteShirtBody
-@onready var spriteShirtArms := $Sprites/SpriteShirtArms
 @onready var spriteHair := $Sprites/SpriteHair
+@onready var spriteArms := $Sprites/SpriteArms
+@onready var spriteShirtArms := $Sprites/SpriteShirtArms
 
 var textures := {}
 
@@ -25,6 +25,7 @@ var textures := {}
 			return
 		
 		state = value
+		setAnimation()
 		setTextures()
 
 @export_category("Colors")
@@ -63,18 +64,23 @@ var textures := {}
 @export var shirt: int:
 	set(value):
 		shirt = value
+		$Sprites/SpriteShirtBody.texture = textures["Shirt" + str(shirt) + "Body" + Utils.State.keys()[state]]
+		$Sprites/SpriteShirtArms.texture = textures["Shirt" + str(shirt) + "Arms" + Utils.State.keys()[state]]
 
 @export var pants: int:
 	set(value):
 		pants = value
+		$Sprites/SpritePants.texture = textures["Pants" + str(value) + Utils.State.keys()[state]]
 
 @export var shoes: int:
 	set(value):
 		shoes = value
+		$Sprites/SpriteShoes.texture = textures["Shoes" + str(value) + Utils.State.keys()[state]]
 
 @export var hair: int:
 	set(value):
 		hair = value
+		$Sprites/SpriteHair.texture = textures["Hair" + str(value) + Utils.State.keys()[state]]
 
 @export_category("Motives")
 @export var faith := 1.0
@@ -112,22 +118,24 @@ var moodletEnergy: Utils.MoodletEnergy
 func setMoodlet(value: float):
 	return 0
 
-func loadTextures():
+func loadTextures() -> void:
 	for i in DirAccess.get_directories_at("res://Local/Textures"):
 		for j in Array(DirAccess.get_files_at("res://Local/Textures/" + i)).filter(func(e): return e.get_extension() == "png"):
 			textures[j.left(-4)] = load("res://Local/Textures/" + i + "/" + j)
 
-func setTextures():
+func setTextures() -> void:
 	spriteBody.texture = textures["Body" + Utils.State.keys()[state]]
-	#spritePants.texture = textures["Pants" + str(pants) + Utils.State.keys()[value]]
-	#spriteShoes.texture = textures["Shoes" + str(shoes) + Utils.State.keys()[value]]
+	spriteShoes.texture = textures["Shoes" + str(shoes) + Utils.State.keys()[state]]
+	spritePants.texture = textures["Pants" + str(pants) + Utils.State.keys()[state]]
+	spriteShirtBody.texture = textures["Shirt" + str(shirt) + "Body" + Utils.State.keys()[state]]
+	spriteHair.texture = textures["Hair" + str(hair) + Utils.State.keys()[state]]
 	spriteArms.texture = textures["Arms" + Utils.State.keys()[state]]
-	#spriteShirtBody.texture = textures["ShirtBody" + str(shirt) + Utils.State.keys()[value]]
-	#spriteShirtArms.texture = textures["ShirtArms" + str(shirtArms) + Utils.State.keys()[value]]
-	#spriteHair.texture = textures["Hair" + str(hair) + Utils.State.keys()[value]]
+	spriteShirtArms.texture = textures["Shirt" + str(shirt) + "Arms" + Utils.State.keys()[state]]
 
-func die():
-	return
+func setAnimation() -> void:
+	animationPlayer.play(Utils.State.keys()[state] + Utils.Direction.keys()[Utils.vectorToDirection(movementManager.lastMovedDirection)])
+
+func die() -> void:
 	if Main.focusedNode == self:
 		Main.focusedNode = null
 	
@@ -138,14 +146,15 @@ func _init() -> void:
 	loadTextures()
 
 func _ready() -> void:
+	movementManager.directionChanged.connect(setAnimation)
 	setTextures()
 	ageManager.lifespanSeconds = Utils.timeUnitsToSeconds(Utils.TimeUnit.Year) * 40
 
 func _physics_process(delta: float) -> void:
-	animationPlayer.play(Utils.State.keys()[state] + Utils.Direction.keys()[Utils.vectorToDirection(movementManager.lastMovedDirection)])
-	
 	if state == Utils.State.None and movementManager.direction == Vector2.ZERO:
 		animationPlayer.stop()
+	else:
+		animationPlayer.speed_scale = int(Input.is_action_pressed("entity_run")) + 1
 	
 	motiveHunger -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 55) * (2 if state == Utils.State.Sleeping else 1))
 	motiveThirst -= (world.timeManager.ingameTimestamp - world.timeManager.oldIngameTimestamp) / (Utils.timeUnitsToSeconds(Utils.TimeUnit.Day, 3) * (2 if state == Utils.State.Sleeping else 1))
