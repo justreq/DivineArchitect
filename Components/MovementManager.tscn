@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7hbustfr8eii"]
-
-[ext_resource type="Script" path="res://Components/MovementManager.gd" id="1_cafjk"]
-
-[node name="MovementManager" type="Node"]
-script = ExtResource("1_cafjk")
